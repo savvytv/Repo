@@ -21,19 +21,6 @@
 
 </addon>
 
-<addon id="repository.savvyrepo" name="Savvy Tech's Repository" version="1.0" provider-name="Savvy Tech">
-	<extension point="xbmc.addon.repository" name="Savvy Tech's Repository">
-		<info compressed="false">http://raw.github.com/savvytv/Repo/master/addons.xml</info>
-		<checksum>http://raw.github.com/savvytv/Repo/master/addons.xml.md5</checksum>
-		<datadir zip="true">http://raw.github.com/savvytv/Repo/master/zips</datadir>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary>Addons From Savvy Tech</summary>
-		<description>Download our Add-Ons</description>
-		<platform>all</platform>
-	</extension>
-</addon>
-
 <addon id="script.tvguide" name="TV Guide" version="10.8a" provider-name="Savvy Tech">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0"/>
