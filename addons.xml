@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addons>
+<addon id="plugin.video.savvytv" name="Savvy TV" version="1.0" provider-name="Savvy Tech">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">Savvy TV</summary>
+    <description lang="en">Stream all of your favourites sports, movies and tv from Savvy TV</description>
+    <platform>all</platform>
+  </extension>
+  <extension point="xbmc.service" library="service.py" start="login" />
+</addon>
+
 <addon id="plugin.video.savvytvlite"
        name="Savvy TV Lite"
        version="1.0"
