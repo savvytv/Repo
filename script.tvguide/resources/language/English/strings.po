@@ -21,7 +21,7 @@ msgid "No description"
 msgstr ""
 
 msgctxt "#30001"
-msgid "[B]Loading TV Guide from Savvy Tech HQ...[/B]"
+msgid "[B]Loading Data from Savvy Tech HQ...[/B]"
 msgstr ""
 
 msgctxt "#30002"
