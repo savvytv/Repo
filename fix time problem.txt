@@ -1,0 +1,24 @@
+To change NTP with command prompt
+
+ssh into box: 
+
+ssh root@192.168.0.101
+pass: openelec
+
+type: nano /storage/.config/autostart.sh
+
+type:
+#!/bin/sh
+(sleep 30; \
+/usr/sbin/ntpdate pool.ntp.org; \
+)&
+
+exit
+
+go to filezila and take off the save at the end of autostart.sh
+
+ssh into box again
+
+type: chmod +x /storage/.config/autostart.sh
+
+All done!

@@ -1,0 +1,17 @@
+How to change splash screen in openelec
+
+ssh into box:
+
+ssh root@192.168.0.101
+pass: openelec
+
+type: mount -o remount,rw /flash
+(this makes the /flash folder read, write & exixute)
+
+go to filezilla and put the oemsplash.png into the storage folder.
+
+go back to terminal 
+
+type: cp /storage/oemsplash.png /flash
+
+All done!
