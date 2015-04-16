@@ -3,7 +3,7 @@ import datetime
 import time
 import utils
 
-ADDON      = xbmcaddon.Addon(id='plugin.video.wliptv')
+ADDON      = xbmcaddon.Addon(id='plugin.video.savvytv')
 recordPath = xbmc.translatePath(os.path.join(ADDON.getSetting('record_path')))
 
 def rtmpdumpFilename():
@@ -25,9 +25,9 @@ def rtmpdumpFilename():
     elif quality == '7':
         return 'linux64/rtmpdump'
     elif quality == '8':
-        return 'mac32/rtmpdump'
+        return 'osx106/rtmpdump'
     elif quality == '9':
-        return 'mac64/rtmpdump'
+        return 'osx107/rtmpdump'
     elif quality == '10':
         return 'pi/rtmpdump'
     elif quality == '11':
@@ -54,15 +54,22 @@ def libPath():
     elif quality == '7':
         return os.path.join(ADDON.getAddonInfo('path'),'rtmpdump', 'linux64')
     elif quality == '8':
-        return os.path.join(ADDON.getAddonInfo('path'),'rtmpdump', 'mac32')
+        return os.path.join(ADDON.getAddonInfo('path'),'rtmpdump', 'osx106')
     elif quality == '9':
-        return os.path.join(ADDON.getAddonInfo('path'),'rtmpdump', 'mac64')
+        return os.path.join(ADDON.getAddonInfo('path'),'rtmpdump', 'osx107')
     elif quality == '10':
         return os.path.join(ADDON.getAddonInfo('path'),'rtmpdump', 'pi')
     elif quality == '11':
         return 'None'   
     elif quality == '12':
         return '/usr/bin/'
+
+if xbmc.getCondVisibility('system.platform.linux'):
+    for dirpath, dirnames, filenames in os.walk(os.path.join(ADDON.getAddonInfo('path'),'rtmpdump')):
+        for filename in filenames:
+            path = os.path.join(dirpath, filename)
+            os.chmod(path, 0777) 
+
 
 def runCommand(cmd, libpath = None, module_path = './'):
    
@@ -169,20 +176,19 @@ link     = net.http_GET(url,headers={"User-Agent":"WLIPTV-XBMC-" + ADDON.getAddo
 data     = json.loads(link)
 
 rtmp     = data['src']
-playpath = rtmp.split('live/')[1]
-app      = 'live?'+rtmp.split('?')[1]
 
-rtmp  = '%s --swfUrl=http://wliptv.com/inc/grindplayer/GrindPlayer.swf --app=%s --playpath=%s' % (rtmp, app, playpath)
-rtmp += ' --live'
-rtmp += ' --stop ' + str(duration)
+rtmp  = '%s' % (rtmp)
 
 cmd  =  os.path.join(ADDON.getAddonInfo('path'),'rtmpdump', rtmpdumpFilename())
-#cmd  = 'c:/rtmp/rtmpdump.exe' 
+cmd += ' -V --stop ' + str(duration) 
+cmd += ' --live '
 cmd += ' --flv "' + recordPath + re.sub('[:\\/*?\<>|"]+', '', title) + '.flv"'
-cmd += ' --rtmp ' + rtmp
+cmd += ' --rtmp "' + rtmp
+cmd += '"'
 
 print "Record.py command:"
 print cmd
+
 
 utils.notification('Recording %s started' % title)
 

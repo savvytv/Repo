@@ -1,6 +1,6 @@
 <settings>
 <category label="[COLOR yellow][B]Settings[/B][/COLOR]">
-	<setting id="user" type="text" label="[COLOR yellow][B]Email[/B][/COLOR]" default=""/>
+	<setting id="user" type="text" label="[COLOR yellow][B]Email[/B][/COLOR]" default=""option="hidden"/>
 	<setting id="pass" type="text" label="[COLOR yellow][B]Password[/B][/COLOR]" default="" option="hidden"/>
     <setting id="streamtype" type="enum" values="HLS|RTMP" label="[COLOR yellow][B]Stream Type[/B][/COLOR]" default="0"/>
 	<setting id="tvguide" type="bool" label="[COLOR yellow][B]Enable Instant Guide[/B][/COLOR]" default="true"/>
@@ -9,7 +9,7 @@
 <category label="[COLOR red][B]Recording[/B][/COLOR]">
 	<setting id="enable_record" type="bool" label="[COLOR red][B]Enable Recording[/B][/COLOR]" default="false"/>
 	<setting id="record_path" type="folder" label="[COLOR red][B]Set Recording Path[/B][/COLOR]" default="" enable="!eq(-1,false)"/>
-	<setting id="os" type="enum" values="Android Arm|Android x86|ATV1 Linux|ATV1 Stock|ATV2|IOS|Linux 32bit|Linux 64bit|Mac 32bit|Mac 64bit|Rasberry Pi|Windows|TLBB" label="Choose Your Operating System" default="0" enable="!eq(-2,false)" />
+	<setting id="os" type="enum" values="Android Arm|Android x86|ATV1 Linux|ATV1 Stock|ATV2|IOS|Linux 32bit|Linux 64bit|Mac OSX 10.6|Mac OSX 10.7|Rasberry Pi|Windows|TLBB" label="Choose Your Operating System" default="0" enable="!eq(-2,false)" />
 </category>
 
 <category label="[COLOR blue][B]Auto View[/B][/COLOR]">

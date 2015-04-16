@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addons>
-<addon id="plugin.video.savvytv" name="Savvy TV" version="1.0" provider-name="Savvy Tech">
+<addon id="plugin.video.savvytv" name="Savvy TV" version="1.1d" provider-name="Savvy Tech">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
   </requires>
@@ -9,7 +9,7 @@
   </extension>
   <extension point="xbmc.addon.metadata">
     <summary lang="en">Savvy TV</summary>
-    <description lang="en">Stream all of your favourites sports, movies and tv from Savvy TV</description>
+    <description lang="en">Stream all of your favourites sports,movies and tv from Savvy Tech</description>
     <platform>all</platform>
   </extension>
   <extension point="xbmc.service" library="service.py" start="login" />
@@ -49,7 +49,7 @@
 	</extension>
 </addon>
 
-<addon id="script.tvguide" name="TV Guide" version="10.8d" provider-name="Savvy Tech">
+<addon id="script.tvguide" name="TV Guide" version="10.8e" provider-name="Savvy Tech">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0"/>
 		<import addon="script.module.simplejson" version="2.0.10"/>
@@ -86,7 +86,7 @@
 		<description lang="da">TV Guide med XMLTV og streaming support</description>
 		<description lang="de">TV Guide mit XMLTV und Streamingunterstützung</description>
 		<description lang="el">Οδηγός Τηλεόρασης με XMLTV και υποστήριξη ροών</description>
-		<description lang="en">TV Guide with XMLTV and streaming support. For more info and instructions on how it works go to the Savvy TV section of [COLOR blue]www.savvytech.es[/COLOR]</description>
+		<description lang="en">TV Guide with XMLTV and streaming support. For more info and instructions on how it works go to the Savvy TV section of [COLOR blue]www.usesavvy.com[/COLOR]</description>
 		<description lang="en_US">TV Guide with XMLTV and streaming support. For more info and instructions on how it works go to the Savvy TV section of [COLOR blue]www.usesavvy.com[/COLOR]</description>
 		<description lang="es">TV Guide con XMLTV y soporte para streaming</description>
 		<description lang="fr">Guide TV avec support du XMLTV et du streaming</description>

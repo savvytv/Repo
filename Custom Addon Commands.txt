@@ -1,0 +1,8 @@
+
+Custom add-on commands.
+
+A specific add-on, settings:
+
+Addon.OpenSettings(script.tvguide)
+
+

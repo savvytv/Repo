@@ -100,7 +100,7 @@ def SIGNIN():
     
 def Launch():        
     dialog = xbmcgui.Dialog()
-    if dialog.yesno("Savvy TV", 'Please call +34 633 079 305 To Register','', "Or Sign In",'Register','Sign In'):
+    if dialog.yesno("Savvy TV", 'To Register please call +34 633079305','', "Or go to www.usesavvy.com",'Register','Sign In'):
     
         SIGNIN()
     

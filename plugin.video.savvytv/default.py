@@ -34,7 +34,7 @@ CatUrl='http://www.wliptv.com/res/content/categories/'
 site='http://www.wliptv.com/index.php?c=6&a=0'
 datapath = xbmc.translatePath(ADDON.getAddonInfo('profile'))
 cookie_path = os.path.join(datapath, 'cookies')
-cookie_jar = os.path.join(cookie_path, "wliptv.lwp")
+cookie_jar = os.path.join(cookie_path, "ntv.lwp")
 from hashlib import md5    
 
 
@@ -86,110 +86,110 @@ def CATEGORIES():
         name= field['name'].encode("utf-8")
         iconimage= field['icon'].encode("utf-8")
         addDir(name,'url',2,CatUrl+cat+'.png',cat,'','')
-    setView('movies', 'main-view')         
+    setView('movies', 'main-view')
+
+    
         
 def CHANNELS(name,cat):
     net.set_cookies(cookie_jar)
     now= datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S').replace(' ','%20')
     url='&mwAction=category&xbmc=1&mwData={"id":"%s","time":"%s","type":"tv"}'%(cat,now)
+    
     link = net.http_GET(site+url, headers={'User-Agent' : UA}).content
+    
     data = json.loads(link)
     channels=data['contents']
     offset= int(data['offset'])
+    BASE=data['base_url']
     uniques=[]
+    genreselect=[]
     if not 'Favorites' in name:
-	    if ADDON.getSetting('genre')=='true':
-	        for field in channels:
-	            name=field['genre']
-	            url=field['genre_id']
-	            if name not in uniques:
-	                uniques.append(name)
-	                addDir(name.title(),'url',5,'',cat,'','')
-	                setView('movies', 'main-view')  
-	    else:
-	        
-	        for field in channels:
-	            endTime      =  field['time_to']
-	            name         =  field['name'].encode("utf-8")
-	            channel      =  field['id']
-	            whatsup      =  field['whatsup'].encode("utf-8")
-	            description  =  field['descr'].encode("utf-8")
-	            r=re.compile("(.+?)-(.+?)-(.+?) (.+?):(.+?):(.+?)")
-	            matchend     =  r.search(endTime)
-	            endyear      =  matchend.group(1)
-	            endmonth     =  matchend.group(2)
-	            endday       =  matchend.group(3)
-	            endhour      =  matchend.group(4)
-	            endminute    =  matchend.group(5)
+        if ADDON.getSetting('genre')=='true':
+                for field in channels:
+                    genre      =  field['genre']
+                        
+                    if genre.title() not in uniques:
+                        uniques.append(genre.title())
 
-	            endDate  =  datetime.datetime(int(endyear),int(endmonth),int(endday),int(endhour),int(endminute)) + datetime.timedelta(seconds = offset)
+                _GENRE_= uniques[xbmcgui.Dialog().select('Select Genre', uniques)]
+                
+                for field in channels:
 
-	            
-	            if ADDON.getSetting('tvguide')=='true':
-	                name='%s - [COLOR yellow]%s[/COLOR]'%(name,whatsup)
-	            addDir(name,'url',200,imageUrl+channel+'.png',channel,'',description,now,endDate,whatsup)
-	            setView('movies', 'channels-view')         
+                    iconimage=BASE+field['icon']
+                    genre      =  field['genre']
+                    endTime      =  field['time_to']
+                    name         =  field['name'].encode("utf-8")
+                    
+                    channel      =  field['id']
+                    whatsup      =  field['whatsup'].encode("utf-8")
+                    description  =  field['descr'].encode("utf-8")
+
+                    if ADDON.getSetting('enable_record')=='true':
+                        THETIME=time.strptime(endTime, '%Y-%m-%d %H:%M:%S')
+ 
+                        endDate  =  datetime.datetime(*THETIME[:6])+ datetime.timedelta(seconds = offset)
+                    else:
+                        endDate  = ''
+                        
+                    
+                    if ADDON.getSetting('tvguide')=='true':
+                        name='%s - [COLOR yellow]%s[/COLOR]'%(name,whatsup)
+                    if _GENRE_.lower() == genre.lower():
+                        addDir(name,'url',200,iconimage,channel,'',description,now,endDate,whatsup)
+                        
+                    setView('movies', 'channels-view')
+                
+        else:
+            
+            for field in channels:
+               
+                iconimage=BASE+field['icon']
+                   
+                endTime      =  field['time_to']
+                name         =  field['name'].encode("utf-8")
+                channel      =  field['id']
+                whatsup      =  field['whatsup'].encode("utf-8")
+                description  =  field['descr'].encode("utf-8")
+
+                if ADDON.getSetting('enable_record')=='true':
+                    THETIME=time.strptime(endTime, '%Y-%m-%d %H:%M:%S')
+
+                    endDate  =  datetime.datetime(*THETIME[:6])+ datetime.timedelta(seconds = offset)
+                else:
+                    endDate  = ''
+                
+                if ADDON.getSetting('tvguide')=='true':
+                    name='%s - [COLOR yellow]%s[/COLOR]'%(name,whatsup)
+                    
+                addDir(name,'url',200,iconimage,channel,'',description,now,endDate,whatsup)
+                setView('movies', 'channels-view')         
     else:
 
         for field in channels:
+            iconimage=BASE+field['icon']
             endTime      =  field['time_to']
             name         =  field['name'].encode("utf-8")
             channel      =  field['id']
             whatsup      =  field['whatsup'].encode("utf-8")
             description  =  field['descr'].encode("utf-8")
-            r=re.compile("(.+?)-(.+?)-(.+?) (.+?):(.+?):(.+?)")
-            matchend     =  r.search(endTime)
-            endyear      =  matchend.group(1)
-            endmonth     =  matchend.group(2)
-            endday       =  matchend.group(3)
-            endhour      =  matchend.group(4)
-            endminute    =  matchend.group(5)
-            
 
-            endDate  =  datetime.datetime(int(endyear),int(endmonth),int(endday),int(endhour),int(endminute)) + datetime.timedelta(seconds = offset)
+            if ADDON.getSetting('enable_record')=='true':
+                THETIME=time.strptime(endTime, '%Y-%m-%d %H:%M:%S')
 
-            
+                endDate  =  datetime.datetime(*THETIME[:6])+ datetime.timedelta(seconds = offset)
+            else:
+                endDate  = ''
             if ADDON.getSetting('tvguide')=='true':
                 name='%s - [COLOR yellow]%s[/COLOR]'%(name,whatsup)
-            addDir(name,'url',200,imageUrl+channel+'.png',channel,'',description,now,endDate,whatsup)
+            addDir(name,'url',200,iconimage,channel,'',description,now,endDate,whatsup)
             setView('movies', 'channels-view')         
+  
             
-def GENRE(name,cat):
-    _GENRE_=name.lower()
-    now= datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S').replace(' ','%20')
-    
-    net.set_cookies(cookie_jar)
-    url='&mwAction=category&xbmc=2&mwData={"id":"%s","time":"%s","type":"tv"}'%(cat,now)
-    link = net.http_GET(site+url, headers={'User-Agent' : UA }).content
-    data = json.loads(link)
-    channels=data['contents']
-    uniques=[]
-    
-    offset= int(data['offset'])
-    for field in channels:
-        genre      =  field['genre']
-        endTime      =  field['time_to']
-        name         =  field['name'].encode("utf-8")
-        channel      =  field['id']
-        whatsup      =  field['whatsup'].encode("utf-8")
-        description  =  field['descr'].encode("utf-8")
-        r=re.compile("(.+?)-(.+?)-(.+?) (.+?):(.+?):(.+?)")
-        matchend     =  r.search(endTime)
-        endyear      =  matchend.group(1)
-        endmonth     =  matchend.group(2)
-        endday       =  matchend.group(3)
-        endhour      =  matchend.group(4)
-        endminute    =  matchend.group(5)
-
-        endDate  =  datetime.datetime(int(endyear),int(endmonth),int(endday),int(endhour),int(endminute)) + datetime.timedelta(seconds = offset)
-
-        
-        if ADDON.getSetting('tvguide')=='true':
-            name='%s - [COLOR yellow]%s[/COLOR]'%(name,whatsup)
-        if genre == _GENRE_:
-            addDir(name,'url',200,imageUrl+channel+'.png',channel,'',description,now,endDate,whatsup)
-        setView('movies', 'channels-view')         
             
+def MYACCOUNT():
+    addDir('Buy Subscription','url',11,'','','','')
+    addDir('My Subscriptions','url',9,'','','','')
+    addDir('Past Orders','url',10,'','','','')
     
     
 def SUBS():
@@ -254,27 +254,27 @@ def CARDDETAILS(cat):
         returnselect=['Cancel','visa','master']
         type= returnselect[xbmcgui.Dialog().select('Please Card Type', nameselect)]
         if not 'Cancel' in type:
-	        name=Search('Name On Card').replace(' ','%20')
-	        card=Numeric('16 Digit Card Number')
-	        month=Numeric('Expiry Month')
-	        year=Numeric('Expiry Full Year (YYYY)')
-	        cvv=Numeric('Security On Back Of Card (CVV)')
-	        url='https://www.wliptv.com/?c=8&a=15&oid=%s&card={"type":"%s","number":"%s","name":"%s","month":"%s","year":"%s","cvv":"%s"}'%(cat,type,card,name,month,year,cvv)
-	        net.set_cookies(cookie_jar)
-	        link = net.http_GET(url, headers={'User-Agent' : UA}).content
-	        data = json.loads(link)
-	        if 'success' in link:
-	            dialog = xbmcgui.Dialog()
-	            winput= data['message']
-	            dialog.ok("Savvy TV", '',winput, '')
-	        else:
-	            dialog = xbmcgui.Dialog()
-	            winput= data['message']
-	            dialog.ok("Savvy TV", '',winput, '')
-	            if dialog.yesno("Savvy TV", "Do You Want To Try Again", ""):
-	               CARDDETAILS(cat)
-	            else:
-	                return
+            name=Search('Name On Card').replace(' ','%20')
+            card=Numeric('16 Digit Card Number')
+            month=Numeric('Expiry Month')
+            year=Numeric('Expiry Full Year (YYYY)')
+            cvv=Numeric('Security On Back Of Card (CVV)')
+            url='https://www.wliptv.com/?c=8&a=15&oid=%s&card={"type":"%s","number":"%s","name":"%s","month":"%s","year":"%s","cvv":"%s"}'%(cat,type,card,name,month,year,cvv)
+            net.set_cookies(cookie_jar)
+            link = net.http_GET(url, headers={'User-Agent' : UA}).content
+            data = json.loads(link)
+            if 'success' in link:
+                dialog = xbmcgui.Dialog()
+                winput= data['message']
+                dialog.ok("Savvy TV", '',winput, '')
+            else:
+                dialog = xbmcgui.Dialog()
+                winput= data['message']
+                dialog.ok("Savvy TV", '',winput, '')
+                if dialog.yesno("Savvy TV", "Do You Want To Try Again", ""):
+                   CARDDETAILS(cat)
+                else:
+                    return
 
 class card_payment(xbmcgui.WindowXMLDialog):
     def __init__(self,*args, **kwargs): 
@@ -373,21 +373,21 @@ def PAYSUBS(cat):
                     idreturn.append(field['id'])   
                 cat= idreturn[xbmcgui.Dialog().select('Which Do You Want To Extend', titlereturn)]
                 if 'Cancel' in cat:
-	                print 'Cancel'
+                    print 'Cancel'
                 else:
-	                net.set_cookies(cookie_jar)
-	                url=URL+'&opt=%s'%cat
-	                link = net.http_GET(url, headers={'User-Agent' : UA}).content
-	                data = json.loads(link)
-	                
-	                
-	                if 'success' in link:
-	                    cat= str(data['body'])
-	                    CARDPAY(cat)
-	                elif 'failure' in link:
-	                    winput= data['message']
-	                    dialog.ok("Savvy TV", '',winput, '')
-	                    return
+                    net.set_cookies(cookie_jar)
+                    url=URL+'&opt=%s'%cat
+                    link = net.http_GET(url, headers={'User-Agent' : UA}).content
+                    data = json.loads(link)
+                    
+                    
+                    if 'success' in link:
+                        cat= str(data['body'])
+                        CARDPAY(cat)
+                    elif 'failure' in link:
+                        winput= data['message']
+                        dialog.ok("Savvy TV", '',winput, '')
+                        return
     
             
 def ADD_FAV(cat):
@@ -457,15 +457,13 @@ def PLAY_STREAM(name,url,iconimage,cat):
             dialog.ok("Savvy TV", '', match[0].replace('\/','/'))
         except:
             dialog = xbmcgui.Dialog()
-            dialog.ok("Savvy TV", '', 'Please Sign Up To Watch The Streams')
+            dialog.ok("Savvy TV", '', 'Please Call +34 633079305 to Subscribe')
         
     else:
         match=re.compile('"src":"(.+?)","type":"rtmp"').findall(link)
         if match:
-            rtmp=match[0].replace('\/','/')
-            playpath=rtmp.split('live/')[1]
-            app='live?'+rtmp.split('?')[1]
-            url='%s swfUrl=http://wliptv.com/inc/strobe/StrobeMediaPlayback.swf app=%s playPath=%s pageUrl=http://wliptv.com/?c=2&a=0&p=50 timeout=10'%(rtmp,app,playpath)
+            url=match[0].replace('\/','/')
+
         else:
             match=re.compile('"src":"(.+?)","type":"hls"').findall(link)
             hls=match[0].replace('\/','/')
@@ -548,12 +546,16 @@ def addDir(name,url,mode,iconimage,cat,date,description,startDate='',endDate='',
         liz=xbmcgui.ListItem(name, iconImage="DefaultFolder.png", thumbnailImage=iconimage)
         liz.setInfo( type="Video", infoLabels={ "Title": name,"Plot":description} )
         menu=[]
+        
+        if ADDON.getSetting('enable_record')=='true':
+            menu.append(('[COLOR red][B]RECORD[/B][/COLOR]','XBMC.RunPlugin(%s?mode=2001&url=url&cat=%s&startDate=%s&endDate=%s&recordname=%s)'% (sys.argv[0],urllib.quote_plus(cat),startDate,endDate,urllib.quote_plus(recordname))))
+        
         if mode==200 or mode==12:
             menu.append(('[COLOR yellow][B]TV Guide[/B][/COLOR]','XBMC.Container.Update(%s?name=None&mode=4&url=None&iconimage=None&cat=%s)'% (sys.argv[0],cat)))
-            if ADDON.getSetting('enable_record')=='true':
-                menu.append(('[COLOR red][B]RECORD[/B][/COLOR]','XBMC.RunPlugin(%s?mode=2001&url=url&cat=%s&startDate=%s&endDate=%s&recordname=%s)'% (sys.argv[0],urllib.quote_plus(cat),startDate,endDate,urllib.quote_plus(recordname))))
+
             menu.append(('[COLOR orange][B]Toggle Favourites[/B][/COLOR]','XBMC.RunPlugin(%s?name=None&mode=7&url=None&iconimage=None&cat=%s)'% (sys.argv[0],cat)))
-            liz.setProperty("IsPlayable","true")
+            if mode==200:
+                liz.setProperty("IsPlayable","true")
             liz.addContextMenuItems(items=menu, replaceItems=True)
             ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=False)
         else:
