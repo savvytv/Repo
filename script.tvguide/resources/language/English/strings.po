@@ -17,11 +17,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgctxt "#30000"
-msgid "No description"
+msgid "Channel description not available!"
 msgstr ""
 
 msgctxt "#30001"
-msgid "[B]Loading Data from Savvy Tech HQ...[/B]"
+msgid "[B]Loading Data from Savvy Tech Servers…[/B]"
 msgstr ""
 
 msgctxt "#30002"
@@ -53,7 +53,7 @@ msgid "Cancel"
 msgstr ""
 
 msgctxt "#30009"
-msgid "No program available"
+msgid "Channel info not available!"
 msgstr ""
 
 #empty strings from id 30010 to 30099
@@ -257,16 +257,16 @@ msgstr ""
 #empty strings from id 30149 to 30149
 
 msgctxt "#30150"
-msgid "Oops, sorry about that!"
+msgid "Oops, something went wrong!"
 msgstr ""
 
 msgctxt "#30151"
-msgid "It was not possible to load program data,"
+msgid "Go to guide settings, change the download interval to every start, click 'OK' and restart TV Guide."
 msgstr ""
 
 msgctxt "#30152"
-msgid "check settings or try again later..."
-msgstr ""
+msgid ""
+msgstr "Once loaded change settings back."
 
 msgctxt "#30153"
 msgid "because the settings are invalid!"
