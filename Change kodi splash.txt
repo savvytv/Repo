@@ -1,5 +1,11 @@
 splash screen url: 
 
+download super repo
+http://srp.nu
+go to program addons
+install splash changer
+
+set URL to:
 https://raw.githubusercontent.com/savvytv/Repo/master/Pics/oemsplash.png
 or
 https://goo.gl/eH8xnt
