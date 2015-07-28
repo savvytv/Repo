@@ -1,0 +1,5 @@
+splash screen url: 
+
+https://raw.githubusercontent.com/savvytv/Repo/master/Pics/oemsplash.png
+or
+https://goo.gl/eH8xnt
