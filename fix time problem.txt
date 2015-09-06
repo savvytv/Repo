@@ -22,3 +22,4 @@ ssh into box again
 type: chmod +x /storage/.config/autostart.sh
 
 All done!
+
