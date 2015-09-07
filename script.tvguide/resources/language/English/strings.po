@@ -1,6 +1,6 @@
 # XBMC Media Center language file
-# Addon Name: Clarkey EPG
-# Addon id: script.clarkeyepg
+# Addon Name: TV Guide
+# Addon id: script.tvguide
 # Addon Provider: rayw1986, bluezed
 msgid ""
 msgstr ""
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgctxt "#30000"
-msgid "Channel description not available!"
+msgid "Channel description not available"
 msgstr ""
 
 msgctxt "#30001"
@@ -53,7 +53,7 @@ msgid "Cancel"
 msgstr ""
 
 msgctxt "#30009"
-msgid "Channel info not available!"
+msgid “Channel info not available"
 msgstr ""
 
 #empty strings from id 30010 to 30099
@@ -163,11 +163,11 @@ msgid "URL"
 msgstr ""
 
 msgctxt "#30126"
-msgid "All Channels"
+msgid “All Channels”
 msgstr ""
 
 msgctxt "#30127"
-msgid "FreeView Only"
+msgid "WLIPTV”
 msgstr ""
 
 msgctxt "#30128"
@@ -191,7 +191,7 @@ msgid "every 48 hrs"
 msgstr ""
 
 msgctxt "#30133"
-msgid "UK (Freeview)"
+msgid "Freeview"
 msgstr ""
 
 msgctxt "#30134"
@@ -265,8 +265,8 @@ msgid "Go to guide settings, change the download interval to every start, click 
 msgstr ""
 
 msgctxt "#30152"
-msgid ""
-msgstr "Once loaded change settings back."
+msgid "Once loaded change settings back."
+msgstr ""
 
 msgctxt "#30153"
 msgid "because the settings are invalid!"
@@ -277,7 +277,7 @@ msgid "It looks like your current skin has a special"
 msgstr ""
 
 msgctxt "#30155"
-msgid "version of the Clarkey EPG skin that is not up-to-date."
+msgid "version of the TV Guide skin that is not up-to-date."
 msgstr ""
 
 msgctxt "#30156"
@@ -285,7 +285,7 @@ msgid "Please try with a different skin..."
 msgstr ""
 
 msgctxt "#30157"
-msgid "It looks like the Clarkey EPG database is broken."
+msgid "It looks like the TV Guide database is broken."
 msgstr ""
 
 msgctxt "#30158"
@@ -351,7 +351,7 @@ msgid "[B]Edit channel order and visibility[/B]"
 msgstr ""
 
 msgctxt "#30501"
-msgid "Move up and down to change the position of[CR]the channel. Select or navigate left to accept[CR]the position."
+msgid "Press left to pull a channel out, then move it up or down. When in place, press right again to set. Pressing on a channel in the list will enable or disable it.[CR]On touch devices long press on a channel to pull it out, move the list to the desired place and then long press on the pulled out channel to put it in its new place."
 msgstr ""
 
 msgctxt "#30502"
@@ -430,7 +430,7 @@ msgid "Play channels using the Weeb.Tv addon"
 msgstr ""
 
 msgctxt "#30802"
-msgid "Clarkey EPG is configured to stream using Weeb.Tv"
+msgid "TV Guide is configured to stream using Weeb.Tv"
 msgstr ""
 
 msgctxt "#30803"
@@ -442,5 +442,33 @@ msgid "Streaming using that addon is now disabled."
 msgstr ""
 
 msgctxt "#30900"
-msgid "Autostart Tv Guide when Kodi starts up."
+msgid "Autostart TV Guide when Kodi starts up"
+msgstr ""
+
+msgctxt "#31000"
+msgid "Connection problem"
+msgstr ""
+
+msgctxt "#31001"
+msgid "It was not possible to update from the server."
+msgstr ""
+
+msgctxt "#31002"
+msgid "Current local data will be kept for now..."
+msgstr ""
+
+msgctxt "#80000"
+msgid "My Movies"
+msgstr ""
+
+msgctxt "#80001"
+msgid "My TV Shows"
+msgstr ""
+
+msgctxt "#80002"
+msgid "Video Add-Ons"
+msgstr ""
+
+msgctxt "#80003"
+msgid "On-Demand"
 msgstr ""
