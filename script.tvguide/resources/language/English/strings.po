@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgctxt "#30000"
-msgid "Channel description not available"
+msgid "Channel description not available. You can still watch this channel without having the TV Guide data. Just select the channel like normal."
 msgstr ""
 
 msgctxt "#30001"
