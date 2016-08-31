@@ -1,3 +1,6 @@
+12.3
+Apparently google are discontinuing the host side of google drive so i have change the EPG source again.
+
 12.2
 Changed Epg data source back to google (Dropbox banned my account due to excessive downloads) oops!
 
