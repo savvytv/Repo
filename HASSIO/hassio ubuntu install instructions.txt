@@ -1,0 +1,6 @@
+
+How to install hassio on ubuntu.
+
+First install ubuntu.
+when its up and running,
+
