@@ -1,6 +1,8 @@
 
-How to install hassio on ubuntu.
+
+
+### How to install hassio on ubuntu.
 
 First install ubuntu.
 when its up and running,
-
+type: curl sL https://goo.gl/1bcBsW | bash -
