@@ -4,5 +4,12 @@
 ### How to install hassio on ubuntu.
 
 First install ubuntu.
+<<<<<<< HEAD
 when its up and running,
 type: curl sL https://goo.gl/1bcBsW | bash -
+=======
+when its up and running, log in and type the following comand.
+
+curl -sL goo.gl/1bcBsW | bash -
+
+>>>>>>> origin/master
