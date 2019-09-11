@@ -3,13 +3,19 @@
 
 ### How to install hassio on ubuntu.
 
-First install ubuntu.
-<<<<<<< HEAD
+First install ubuntu. go through setup procedure. enable open ssh server.
+
 when its up and running,
 type: curl sL https://goo.gl/1bcBsW | bash -
-=======
-when its up and running, log in and type the following comand.
 
-curl -sL goo.gl/1bcBsW | bash -
+stop laptop shutting down after lid close:
+sudo nano /etc/systemd/logind.conf
+change this line and make it:
+HandleLidSwitch=ignore
+HandleLidSwitchDocked=ignore
+Then run this command:
+sudo systemctl restart systemd-logind
 
->>>>>>> origin/master
+
+if open ssh is not enabled. do so by typing:
+sudo apt-get install openssh-server
